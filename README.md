@@ -42,3 +42,7 @@ GitHub Actions will automatically create a job for each option we define in the 
 The workflow view in the **Actions** tab:
 
 ![ui](./images/jobs.png)
+
+## Questions
+
+If you have a question or run into any issues, let us know via [Discussions](https://github.com/artilleryio/artillery/discussions).
