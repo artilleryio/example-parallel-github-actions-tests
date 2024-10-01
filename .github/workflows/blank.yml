@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Run Artillery tests in parallel using a matrix
 
 # Controls when the workflow will run
 on:
@@ -16,21 +16,23 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    strategy:
+      matrix:
+        # Create a scenario_name variable in this job that will be used to
+        # run an Artillery test for that scenario
+        scenario_name:
+          - armadillo
+          - dino
+          - pony
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+        with:
+          scenario_name: ${{ matrix.scenario_name }}
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Run Artillery tests in parallel
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo artillery run ${{matrix.scenario_name}}.yml
