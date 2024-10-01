@@ -35,4 +35,4 @@ jobs:
 
       - name: Run Artillery tests in parallel
         run: |
-          echo artillery run ${{matrix.scenario_name}}.yml
+          artillery run scenarios/${{matrix.scenario_name}}.yml --config config.yml
