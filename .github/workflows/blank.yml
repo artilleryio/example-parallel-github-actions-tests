@@ -33,6 +33,9 @@ jobs:
         with:
           scenario_name: ${{ matrix.scenario_name }}
 
+      - name: Install Artillery
+        run: npm install -g artillery
+
       - name: Run Artillery tests in parallel
         run: |
           artillery run scenarios/${{matrix.scenario_name}}.yml --config config.yml
